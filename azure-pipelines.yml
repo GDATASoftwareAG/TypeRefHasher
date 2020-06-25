@@ -44,3 +44,36 @@ jobs:
       inputs:
         pathtoPublish: '$(artifactsFolder)'
         artifactName: trh
+
+  - job: Windows
+    displayName: Build & Test Windows
+    pool: 
+      vmImage: 'windows-latest'
+    variables:
+      buildConfiguration: 'Release'
+      artifactsFolder: '$(Build.SourcesDirectory)/artifacts/'
+
+    steps:
+    - task: UseDotNet@2
+      displayName: "Use .NET 3.x"
+      inputs:
+        version: '3.x'
+        packageType: sdk
+    
+    - powershell: dotnet publish ./src/TRH/TRH.csproj -c $(buildConfiguration) -r win-x64 -o $(artifactsFolder)
+      displayName: 'Build'
+
+    - powershell: mv TRH.exe trh.exe
+      displayName: Rename artifact
+      workingDirectory: '$(artifactsFolder)'
+
+    - powershell: dotnet test
+      displayName: Test
+
+    - task: PublishBuildArtifacts@1
+      displayName: Publish
+      inputs:
+        pathtoPublish: '$(artifactsFolder)'
+        artifactName: trh.exe
+
+  
