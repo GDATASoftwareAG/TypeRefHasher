@@ -13,9 +13,10 @@ namespace TRH.Test
             var cli  = GetCliTool();
             var file = "Binaries/doesNotExist.exe";
 
-            var result = RunCli(cli, file);
+            var (exitCode, msg) = RunCli(cli, file);
 
-            Assert.Equal("File not found.", result);
+            Assert.Equal(1, exitCode);
+            Assert.Equal("File not found.", msg);
         }
 
         [Fact]
@@ -24,9 +25,10 @@ namespace TRH.Test
             var cli  = GetCliTool();
             var file = "Binaries/notPeFile.txt";
 
-            var result = RunCli(cli, file);
+            var (exitCode, msg) = RunCli(cli, file);
 
-            Assert.Equal("Not a valid PE file.", result);
+            Assert.Equal(1, exitCode);
+            Assert.Equal("Not a valid PE file.", msg);
         }
 
         [Fact]
@@ -35,23 +37,25 @@ namespace TRH.Test
             var cli  = GetCliTool();
             var file = "Binaries/firefox_x86.exe";
 
-            var result = RunCli(cli, file);
+            var (exitCode, msg) = RunCli(cli, file);
 
-            Assert.Equal("Not a valid .NET binary.", result);
+            Assert.Equal(1, exitCode);
+            Assert.Equal("Not a valid .NET binary.", msg);
         }
 
         [Fact]
         public void Cli_GivenADotNetFile_ReturnsTrh()
         {
-            var cli  = GetCliTool();
+            var cli = GetCliTool();
             var file = "Binaries/NetCoreConsole.dll";
 
-            var result = RunCli(cli, file);
+            var (exitCode, msg) = RunCli(cli, file);
 
-            Assert.Equal("9b435fef12d55da7073890330a9a4d7f6e02194aa63e6093429db574407458ba", result);
+            Assert.Equal(0, exitCode);
+            Assert.Equal("9b435fef12d55da7073890330a9a4d7f6e02194aa63e6093429db574407458ba", msg);
         }
 
-        static string RunCli(string cli, string param)
+        static (int, string) RunCli(string cli, string param)
         {
             var process = new Process
             {
@@ -69,7 +73,7 @@ namespace TRH.Test
             var err = process.StandardError.ReadToEnd();
             process.WaitForExit();
 
-            return (err + output).Trim();
+            return (process.ExitCode, (err + output).Trim());
         }
 
         private static string GetCliTool() 

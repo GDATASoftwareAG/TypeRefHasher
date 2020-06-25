@@ -6,8 +6,8 @@ namespace TRH
 {
     class Program
     {
-        private const int Error = 0;
-        private const int Success = 1;
+        private const int Error = 1;
+        private const int Success = 0;
 
         public static int Main(string[] args)
         {
