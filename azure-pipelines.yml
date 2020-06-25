@@ -36,8 +36,12 @@ jobs:
       displayName: Strip artifact
       workingDirectory: '$(artifactsFolder)'
 
-    - powershell: dotnet test
+    - task: DotNetCoreCLI@2
       displayName: Test
+      inputs: 
+        command: test
+        projects: '**/*Test/*.csproj'
+        arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
     - powershell: mv $(artifactsFolder)/trh $(Build.ArtifactStagingDirectory)
       displayName: Copy artifacts
@@ -70,8 +74,12 @@ jobs:
       displayName: Rename artifact
       workingDirectory: '$(artifactsFolder)'
 
-    - powershell: dotnet test
+    - task: DotNetCoreCLI@2
       displayName: Test
+      inputs: 
+        command: test
+        projects: '**/*Test/*.csproj'
+        arguments: '--configuration $(buildConfiguration) --collect "Code coverage"' 
 
     - powershell: mv $(artifactsFolder)/trh.exe $(Build.ArtifactStagingDirectory)
       displayName: Copy artifacts
