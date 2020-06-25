@@ -1,19 +1,30 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- master
+  branches:
+    include:
+    - '*'
+  tags:
+    include:
+    - '*'
 
-pool:
-  vmImage: 'ubuntu-latest'
+jobs:
+  - job: Linux
+    displayName: Build & Test Linux
+    pool: 
+      vmImage: 'ubuntu-latest'
+    variables:
+      buildConfiguration: 'Release'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+    steps:
+    - task: UseDotNet@2
+      displayName: "Use .NET 3.x"
+      inputs:
+        version: '3.x'
+        packageType: sdk
+    
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish artifacts'
+      inputs:
+        command: publish
+        projects: '**/src/TRH/*.csproj'
+        arguments: '-c $(buildConfiguration) -r linux-x64 -o $(Build.SourcesDirectory)/artifacts/'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
