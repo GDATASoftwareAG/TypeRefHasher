@@ -25,7 +25,7 @@ jobs:
       displayName: 'Publish artifacts'
       inputs:
         command: publish
-        projects: '**/src/TRH/*.csproj'
+        projects: '/src/TRH/TRH.csproj'
         arguments: '-c $(buildConfiguration) -r linux-x64 -o $(Build.SourcesDirectory)/artifacts/'
 
     - script: mv TRH trh
