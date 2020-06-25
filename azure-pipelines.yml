@@ -43,7 +43,7 @@ jobs:
       displayName: Publish
       inputs:
         pathtoPublish: '$(artifactsFolder)'
-        artifactName: trh
+        artifactName: trhLin
 
   - job: Windows
     displayName: Build & Test Windows
@@ -74,7 +74,7 @@ jobs:
       displayName: Publish
       inputs:
         pathtoPublish: '$(artifactsFolder)'
-        artifactName: trh.exe
+        artifactName: trhWin
 
 
   - job: Release
@@ -99,5 +99,17 @@ jobs:
         inputs:
           buildType: 'current'
           downloadType: 'single'
-          artifactName: 'trh.exe'
+          artifactName: 'trhWi'
           downloadPath: '$(System.ArtifactsDirectory)'
+
+      - task: GitHubRelease@0
+        displayName: GitHub Release
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+        inputs:
+          gitHubConnection: 'GDATASoftwareAG'
+          repositoryName: 'GDATASoftwareAG/TypeRefHasher'
+          title: 'TypeRefHasher Release'
+          addChangeLog: false
+          assets: |
+            $(System.ArtifactsDirectory)\trhLin\*
+            $(System.ArtifactsDirectory)\trhWin\*.exe
