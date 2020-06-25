@@ -17,7 +17,6 @@
 
   <PropertyGroup>
     <RootAllApplicationAssemblies>false</RootAllApplicationAssemblies>
-    <!--<IlcInvariantGlobalization>true</IlcInvariantGlobalization>-->
     <IlcGenerateCompleteTypeMetadata>false</IlcGenerateCompleteTypeMetadata>
     <IlcGenerateStackTraceData>false</IlcGenerateStackTraceData>
     <IlcOptimizationPreference>Size</IlcOptimizationPreference>

@@ -2,16 +2,54 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace TRH.Test
 {
     public class CliTest
     {
-        private readonly ITestOutputHelper _output;
+        [Fact]
+        public void Cli_GivenWrongPath_ReturnsError()
+        {
+            var cli  = GetCliTool();
+            var file = "Binaries/doesNotExist.exe";
 
-        public CliTest(ITestOutputHelper output) 
-            => _output = output;
+            var result = RunCli(cli, file);
+
+            Assert.Equal("File not found.", result);
+        }
+
+        [Fact]
+        public void Cli_GivenNoPeFile_ReturnsError()
+        {
+            var cli  = GetCliTool();
+            var file = "Binaries/notPeFile.txt";
+
+            var result = RunCli(cli, file);
+
+            Assert.Equal("Not a valid PE file.", result);
+        }
+
+        [Fact]
+        public void Cli_GivenAPeFile_ReturnsError()
+        {
+            var cli  = GetCliTool();
+            var file = "Binaries/firefox_x86.exe";
+
+            var result = RunCli(cli, file);
+
+            Assert.Equal("Not a valid .NET binary.", result);
+        }
+
+        [Fact]
+        public void Cli_GivenADotNetFile_ReturnsTrh()
+        {
+            var cli  = GetCliTool();
+            var file = "Binaries/NetCoreConsole.dll";
+
+            var result = RunCli(cli, file);
+
+            Assert.Equal("9b435fef12d55da7073890330a9a4d7f6e02194aa63e6093429db574407458ba", result);
+        }
 
         static string RunCli(string cli, string param)
         {
@@ -27,7 +65,6 @@ namespace TRH.Test
                 }
             };
             process.Start();
-            //* Read the output (or the error)
             var output = process.StandardOutput.ReadToEnd();
             var err = process.StandardError.ReadToEnd();
             process.WaitForExit();
@@ -39,25 +76,5 @@ namespace TRH.Test
             => Environment.OSVersion.Platform == PlatformID.Unix
                 ? Path.GetFullPath("../../../../../artifacts/trh")
                 : Path.GetFullPath("../../../../../artifacts/trh.exe");
-
-        [Fact]
-        public void PeNet_GivenADotNetFile_ReturnsTrh()
-        {
-            var peFile = new PeNet.PeFile("Binaries/NetCoreConsole.dll");
-
-            Assert.Equal("9b435fef12d55da7073890330a9a4d7f6e02194aa63e6093429db574407458ba", peFile.TypeRefHash);
-        }
-
-        [Fact]
-        public void Cli_GivenADotNetFile_ReturnsTrh()
-        {
-            var cli = GetCliTool();
-            _output.WriteLine($"CLI tool path: {cli}");
-            var file = "Binaries/NetCoreConsole.dll";
-
-            var result = RunCli(cli, file);
-
-            Assert.Equal("9b435fef12d55da7073890330a9a4d7f6e02194aa63e6093429db574407458ba", result);
-        }
     }
 }
