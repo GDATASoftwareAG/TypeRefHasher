@@ -76,4 +76,28 @@ jobs:
         pathtoPublish: '$(artifactsFolder)'
         artifactName: trh.exe
 
-  
+
+  - job: Release
+    dependsOn:
+    - Linux
+    - Windows
+
+    pool:
+      vmImage: 'windows-latest'
+
+    steps:
+      - task: DownloadBuildArtifacts@0
+        displayName: Download Linux executable
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'trh'
+          downloadPath: '$(System.ArtifactsDirectory)'
+      
+      - task: DownloadBuildArtifacts@0
+        displayName: Download Windows executable
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'trh.exe'
+          downloadPath: '$(System.ArtifactsDirectory)'
