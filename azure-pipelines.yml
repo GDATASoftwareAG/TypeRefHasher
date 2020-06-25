@@ -28,3 +28,10 @@ jobs:
         projects: '**/src/TRH/*.csproj'
         arguments: '-c $(buildConfiguration) -r linux-x64 -o $(Build.SourcesDirectory)/artifacts/'
 
+    - script: mv TRH trh
+      displayName: Rename artifact
+      workingDirectory: '$(Build.SourcesDirectory)/artifacts'
+
+    - script: strip trh
+      displayName: Strip artifact
+      workingDirectory: '$(Build.SourcesDirectory)/artifacts'
