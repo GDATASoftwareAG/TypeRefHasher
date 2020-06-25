@@ -40,5 +40,5 @@ jobs:
       displayName: Debug artifacts
       workingDirectory: '$(artifactsFolder)'
 
-    - script: dotnet test
+    - script: pwd && dotnet test
       displayName: Test
