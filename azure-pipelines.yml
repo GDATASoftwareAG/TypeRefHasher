@@ -16,7 +16,7 @@ jobs:
       artifactsFolder: '$(Build.SourcesDirectory)/artifacts/'
 
     steps:
-    - script: apt-get install clang zlib1g-dev libkrb5-dev libtinfo5 -y
+    - script: sudo apt-get install clang zlib1g-dev libkrb5-dev libtinfo5 -y
       displayName: Install requirements
       
     - task: UseDotNet@2
