@@ -37,8 +37,8 @@ namespace TRH.Test
 
         private static string GetCliTool() 
             => Environment.OSVersion.Platform == PlatformID.Unix
-                ? Path.GetFullPath("../../../../artifacts/trh")
-                : Path.GetFullPath("../../../../artifacts/trh.exe");
+                ? Path.GetFullPath("../../../../../artifacts/trh")
+                : Path.GetFullPath("../../../../../artifacts/trh.exe");
 
 
         [Fact]
