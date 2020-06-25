@@ -25,15 +25,15 @@ namespace TRH.Test
         }
 
         private static string GetCliTool() => Environment.OSVersion.Platform == PlatformID.Unix
-                ? Path.Combine("./artifacts", "trh")
-                : Path.Combine("./artifacts", "trh.exe");
+                ? Path.Combine("artifacts", "trh")
+                : Path.Combine("artifacts", "trh.exe");
 
 
         [Fact]
         public void Test1()
         {
             var cli = GetCliTool();
-            var file = "/Binaries/NetCoreConsole.dll";
+            var file = "Binaries/NetCoreConsole.dll";
 
             var result = RunCli(cli, file);
 
