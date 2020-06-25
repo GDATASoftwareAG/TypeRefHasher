@@ -57,7 +57,7 @@ namespace TRH.Test
 
             var result = RunCli(cli, file);
 
-            Assert.Equal("1defec485ab3060a9201f35d69cfcdec4b70b84a2b71c83b53795ca30d1ae8be", result);
+            Assert.Equal("9b435fef12d55da7073890330a9a4d7f6e02194aa63e6093429db574407458ba", result);
         }
     }
 }

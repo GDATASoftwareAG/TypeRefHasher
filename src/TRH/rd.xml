@@ -2,8 +2,8 @@
 <Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
   <Application>
     <!-- Alternative to single requirements, include whole PeNet -> larger binary-->
-    <!--<Assembly Name="PeNet" Dynamic="Required All"></Assembly>-->
-    <Assembly Name="PeNet">
+    <Assembly Name="PeNet" Dynamic="Required All"></Assembly>
+    <!--<Assembly Name="PeNet">
       <Type Name="PeNet.Header.Net.MetaDataTables.Assembly" Dynamic="Required All" />
       <Type Name="PeNet.Header.Net.MetaDataTables.AssemblyRef" Dynamic="Required All" />
       <Type Name="PeNet.Header.Net.MetaDataTables.Constant" Dynamic="Required All" />
@@ -25,6 +25,6 @@
       <Type Name="PeNet.Header.Net.MetaDataTables.TypeDef" Dynamic="Required All" />
       <Type Name="PeNet.Header.Net.MetaDataTables.TypeRef" Dynamic="Required All" />
       <Type Name="PeNet.Header.Net.MetaDataTables.TypeSpec" Dynamic="Required All" />
-    </Assembly>
+    </Assembly>-->
   </Application>
 </Directives>
