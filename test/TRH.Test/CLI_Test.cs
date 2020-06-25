@@ -26,17 +26,19 @@ namespace TRH.Test
 
         private static string GetCliTool() 
             => Environment.OSVersion.Platform == PlatformID.Unix
-                ? "./artifacts/trh"
-                : "./artifacts/trh.exe";
+                ? Path.GetFullPath("./artifacts/trh")
+                : Path.GetFullPath("./artifacts/trh.exe");
 
 
         [Fact]
         public void Test1()
         {
+
             var cli = GetCliTool();
+            Assert.Equal("dfdfd", cli);
             //var file = "test/TRH.Test/Binaries/NetCoreConsole.dll";
 
-                
+
 
             var result = RunCli(cli, null);
 

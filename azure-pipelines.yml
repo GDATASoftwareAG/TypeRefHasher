@@ -28,17 +28,17 @@ jobs:
     - powershell: dotnet publish ./src/TRH/TRH.csproj -c $(buildConfiguration) -r linux-x64 -o $(artifactsFolder)
       displayName: 'Publish artifacts'
 
-    - script: mv TRH trh
+    - powershell: mv TRH trh
       displayName: Rename artifact
       workingDirectory: '$(artifactsFolder)'
 
-    - script: strip trh
+    - powershell: strip trh
       displayName: Strip artifact
       workingDirectory: '$(artifactsFolder)'
 
-    - script: ls -lah
+    - powershell: ls -lah
       displayName: Debug artifacts
       workingDirectory: '$(artifactsFolder)'
 
-    - script: pwd && dotnet test
+    - powershell: pwd && dotnet test
       displayName: Test
