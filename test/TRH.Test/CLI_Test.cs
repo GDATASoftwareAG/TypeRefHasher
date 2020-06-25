@@ -2,19 +2,30 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace TRH.Test
 {
     public class CLI_Test
     {
+        private readonly ITestOutputHelper _output;
+
+        public CLI_Test(ITestOutputHelper output) 
+            => _output = output;
+
         static string RunCli(string cli, string param)
         {
-            Process process = new Process();
-            process.StartInfo.FileName = cli;
-            process.StartInfo.Arguments = param;
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.RedirectStandardError = true;
+            var process = new Process
+            {
+                StartInfo =
+                {
+                    FileName               = cli,
+                    Arguments              = param,
+                    UseShellExecute        = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError  = true
+                }
+            };
             process.Start();
             //* Read the output (or the error)
             var output = process.StandardOutput.ReadToEnd();
@@ -33,8 +44,8 @@ namespace TRH.Test
         [Fact]
         public void GivenADotNetFile_TrhGetsReturned()
         {
-
             var cli = GetCliTool();
+            _output.WriteLine($"CLI tool path: {cli}");
             var file = "Binaries/NetCoreConsole.dll";
 
             var result = RunCli(cli, file);
