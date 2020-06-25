@@ -13,25 +13,29 @@ jobs:
       vmImage: 'ubuntu-latest'
     variables:
       buildConfiguration: 'Release'
+      artifactsFolder: '$(Build.SourcesDirectory)/artifacts/'
 
     steps:
+    - script: apt-get install clang zlib1g-dev libkrb5-dev libtinfo5
+      displayName: Install requirements
+      
     - task: UseDotNet@2
       displayName: "Use .NET 3.x"
       inputs:
         version: '3.x'
         packageType: sdk
     
-    - powershell: dotnet publish -c $(buildConfiguration) -r linux-x64 -o $(Build.SourcesDirectory)/artifacts/
+    - powershell: dotnet publish -c $(buildConfiguration) -r linux-x64 -o $(artifactsFolder)
       displayName: 'Publish artifacts'
 
     - script: mv TRH trh
       displayName: Rename artifact
-      workingDirectory: '$(Build.SourcesDirectory)/artifacts'
+      workingDirectory: '$(artifactsFolder)'
 
     - script: strip trh
       displayName: Strip artifact
-      workingDirectory: '$(Build.SourcesDirectory)/artifacts'
+      workingDirectory: '$(artifactsFolder)'
 
     - script: ls -lah
       displayName: Debug artifacts
-      workingDirectory: '$(Build.SourcesDirectory)/artifacts'
+      workingDirectory: '$(artifactsFolder)'
