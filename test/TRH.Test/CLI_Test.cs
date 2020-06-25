@@ -17,8 +17,8 @@ namespace TRH.Test
             process.StartInfo.RedirectStandardError = true;
             process.Start();
             //* Read the output (or the error)
-            string output = process.StandardOutput.ReadToEnd();
-            string err = process.StandardError.ReadToEnd();
+            var output = process.StandardOutput.ReadToEnd();
+            var err = process.StandardError.ReadToEnd();
             process.WaitForExit();
 
             return (err + output).Trim();
@@ -31,18 +31,15 @@ namespace TRH.Test
 
 
         [Fact]
-        public void Test1()
+        public void GivenADotNetFile_TrhGetsReturned()
         {
 
             var cli = GetCliTool();
-            Assert.Equal("dfdfd", cli);
-            //var file = "test/TRH.Test/Binaries/NetCoreConsole.dll";
+            var file = "Binaries/NetCoreConsole.dll";
 
+            var result = RunCli(cli, file);
 
-
-            var result = RunCli(cli, null);
-
-            //Assert.Equal("c4bc255f816ae338fba805256b078bb023d339d2b80dc84a21444367539038cb", result);
+            Assert.Equal("c4bc255f816ae338fba805256b078bb023d339d2b80dc84a21444367539038cb", result);
         }
     }
 }
