@@ -8,6 +8,17 @@ namespace TRH.Test
     public class CliTest
     {
         [Fact]
+        public void Cli_GivenWrongNumParams_ReturnsError()
+        {
+            var cli  = GetCliTool();
+
+            var (exitCode, msg) = RunCli(cli, null);
+
+            Assert.Equal(1, exitCode);
+            Assert.Equal("Usage: trh pathtofile", msg);
+        }
+
+        [Fact]
         public void Cli_GivenWrongPath_ReturnsError()
         {
             var cli  = GetCliTool();

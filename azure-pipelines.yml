@@ -26,7 +26,7 @@ jobs:
         packageType: sdk
     
     - powershell: dotnet publish ./src/TRH/TRH.csproj -c $(buildConfiguration) -r linux-x64 -o $(artifactsFolder)
-      displayName: 'Publish artifacts'
+      displayName: 'Build'
 
     - powershell: mv TRH trh
       displayName: Rename artifact
@@ -36,9 +36,11 @@ jobs:
       displayName: Strip artifact
       workingDirectory: '$(artifactsFolder)'
 
-    - powershell: ls -lah
-      displayName: Debug artifacts
-      workingDirectory: '$(artifactsFolder)'
-
     - powershell: dotnet test
       displayName: Test
+
+    - task: PublishBuildArtifacts@1
+      displayName: Publish
+      inputs:
+        pathtoPublish: '$(artifactsFolder)'
+        artifactName: trh
