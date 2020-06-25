@@ -26,8 +26,8 @@ namespace TRH.Test
 
         private static string GetCliTool() 
             => Environment.OSVersion.Platform == PlatformID.Unix
-                ? "artifacts/trh"
-                : "artifacts/trh.exe";
+                ? "./artifacts/trh"
+                : "./artifacts/trh.exe";
 
 
         [Fact]
