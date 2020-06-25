@@ -6,11 +6,11 @@ using Xunit.Abstractions;
 
 namespace TRH.Test
 {
-    public class CLI_Test
+    public class CliTest
     {
         private readonly ITestOutputHelper _output;
 
-        public CLI_Test(ITestOutputHelper output) 
+        public CliTest(ITestOutputHelper output) 
             => _output = output;
 
         static string RunCli(string cli, string param)
@@ -40,9 +40,16 @@ namespace TRH.Test
                 ? Path.GetFullPath("../../../../../artifacts/trh")
                 : Path.GetFullPath("../../../../../artifacts/trh.exe");
 
+        [Fact]
+        public void PeNet_GivenADotNetFile_ReturnsTrh()
+        {
+            var peFile = new PeNet.PeFile("Binaries/NetCoreConsole.dll");
+
+            Assert.Equal("9b435fef12d55da7073890330a9a4d7f6e02194aa63e6093429db574407458ba", peFile.TypeRefHash);
+        }
 
         [Fact]
-        public void GivenADotNetFile_TrhGetsReturned()
+        public void Cli_GivenADotNetFile_ReturnsTrh()
         {
             var cli = GetCliTool();
             _output.WriteLine($"CLI tool path: {cli}");
@@ -50,7 +57,7 @@ namespace TRH.Test
 
             var result = RunCli(cli, file);
 
-            Assert.Equal("c4bc255f816ae338fba805256b078bb023d339d2b80dc84a21444367539038cb", result);
+            Assert.Equal("1defec485ab3060a9201f35d69cfcdec4b70b84a2b71c83b53795ca30d1ae8be", result);
         }
     }
 }
