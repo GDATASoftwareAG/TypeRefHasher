@@ -120,16 +120,14 @@ jobs:
         displayName: Get version from tag
         condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
 
-      - powershell: echo $(version)
-
-      # - task: GitHubRelease@0
-      #   displayName: GitHub Release
-      #   condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
-      #   inputs:
-      #     gitHubConnection: 'GitHubTRH'
-      #     repositoryName: 'GDATASoftwareAG/TypeRefHasher'
-      #     title: 'TypeRefHasher $()'
-      #     addChangeLog: false
-      #     assets: |
-      #       $(System.ArtifactsDirectory)\trhLin\*
-      #       $(System.ArtifactsDirectory)\trhWin\*.exe
+      - task: GitHubRelease@0
+        displayName: GitHub Release
+        condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
+        inputs:
+          gitHubConnection: 'GitHubTRH'
+          repositoryName: 'GDATASoftwareAG/TypeRefHasher'
+          title: 'TypeRefHasher $(version)'
+          addChangeLog: false
+          assets: |
+            $(System.ArtifactsDirectory)\trhLin\*
+            $(System.ArtifactsDirectory)\trhWin\*.exe
