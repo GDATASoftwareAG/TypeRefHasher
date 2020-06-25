@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.IO;
 using Xunit;
 
 namespace TRH.Test
@@ -23,13 +24,16 @@ namespace TRH.Test
             return (err + output).Trim();
         }
 
+        private static string GetCliTool() => Environment.OSVersion.Platform == PlatformID.Unix
+                ? Path.Combine("./artifacts", "trh")
+                : Path.Combine("./artifacts", "trh.exe");
+
+
         [Fact]
         public void Test1()
         {
-            var cli =
-                @"C:\Users\Stefa\source\repos\TypeRefHasher\src\TRH\bin\Release\netcoreapp3.1\win-x64\native\TRH.exe";
-
-            var file = @"C:\Users\Stefa\source\repos\PeNet\test\PeNet.Test\Binaries\NetFrameworkConsole.exe";
+            var cli = GetCliTool();
+            var file = "/Binaries/NetCoreConsole.dll";
 
             var result = RunCli(cli, file);
 

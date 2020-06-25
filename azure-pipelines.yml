@@ -39,3 +39,6 @@ jobs:
     - script: ls -lah
       displayName: Debug artifacts
       workingDirectory: '$(artifactsFolder)'
+
+    - powershell: dotnet test
+      displayName: Test
