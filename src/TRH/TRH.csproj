@@ -11,13 +11,13 @@
     <PackageReference Include="xunit.abstractions" Version="2.0.3" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <RdXmlFile Include="rd.xml" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <PropertyGroup>
     <IlcInvariantGlobalization>true</IlcInvariantGlobalization>
-    <RootAllApplicationAssemblies>false</RootAllApplicationAssemblies>
+    <!--<RootAllApplicationAssemblies>false</RootAllApplicationAssemblies>-->
     <IlcGenerateCompleteTypeMetadata>false</IlcGenerateCompleteTypeMetadata>
     <IlcGenerateStackTraceData>false</IlcGenerateStackTraceData>
     <IlcOptimizationPreference>Size</IlcOptimizationPreference>
