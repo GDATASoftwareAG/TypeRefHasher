@@ -39,10 +39,13 @@ jobs:
     - powershell: dotnet test
       displayName: Test
 
+    - powershell: mv $(artifactsFolder)/trh $(Build.ArtifactStagingDirectory)
+      displayName: Copy artifacts
+
     - task: PublishBuildArtifacts@1
       displayName: Publish
       inputs:
-        pathtoPublish: '$(artifactsFolder)'
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)'
         artifactName: trhLin
 
   - job: Windows
@@ -70,10 +73,13 @@ jobs:
     - powershell: dotnet test
       displayName: Test
 
+    - powershell: mv $(artifactsFolder)/trh.exe $(Build.ArtifactStagingDirectory)
+      displayName: Copy artifacts
+
     - task: PublishBuildArtifacts@1
       displayName: Publish
       inputs:
-        pathtoPublish: '$(artifactsFolder)'
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)'
         artifactName: trhWin
 
 
@@ -91,7 +97,7 @@ jobs:
         inputs:
           buildType: 'current'
           downloadType: 'single'
-          artifactName: 'trh'
+          artifactName: 'trhLin'
           downloadPath: '$(System.ArtifactsDirectory)'
       
       - task: DownloadBuildArtifacts@0
@@ -99,12 +105,12 @@ jobs:
         inputs:
           buildType: 'current'
           downloadType: 'single'
-          artifactName: 'trhWi'
+          artifactName: 'trhWin'
           downloadPath: '$(System.ArtifactsDirectory)'
 
       - task: GitHubRelease@0
         displayName: GitHub Release
-        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+        condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
         inputs:
           gitHubConnection: 'GitHubTRH'
           repositoryName: 'GDATASoftwareAG/TypeRefHasher'
