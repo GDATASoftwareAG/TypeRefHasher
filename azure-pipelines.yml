@@ -90,10 +90,11 @@ jobs:
 
     - task: PowerShell@2
       displayName: 'Build MSI setup'
-      targetPath: 'filePath'
-      filePath: '.\build-msi.ps1'
-      arguments: "-version $env:version"
-      workingDirectory: '$(Build.SourcesDirectory)/src/Installer'
+      inputs:
+        targetPath: 'filePath'
+        filePath: '.\build-msi.ps1'
+        arguments: "-version $env:version"
+        workingDirectory: '$(Build.SourcesDirectory)/src/Installer'
 
     - powershell: mv $(artifactsFolder)/trh.exe $(Build.ArtifactStagingDirectory)
       displayName: Copy artifacts
