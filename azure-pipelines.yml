@@ -92,7 +92,7 @@ jobs:
       displayName: 'Build MSI setup'
       inputs:
         targetPath: 'filePath'
-        filePath: '.\build-msi.ps1'
+        filePath: '$(Build.SourcesDirectory)/src/Installer/build-msi.ps1'
         arguments: "-version $env:version"
         workingDirectory: '$(Build.SourcesDirectory)/src/Installer'
 
