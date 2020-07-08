@@ -96,7 +96,7 @@ jobs:
         arguments: "-version $env:version"
         workingDirectory: '$(Build.SourcesDirectory)/src/Installer'
 
-    - powershell: mv $(artifactsFolder)/trh.exe $(Build.ArtifactStagingDirectory)
+    - powershell: mv $(artifactsFolder)/trh.exe $(Build.ArtifactStagingDirectory); mv $(artifactsFolder)/trh.msi $(Build.ArtifactStagingDirectory)
       displayName: Copy artifacts
 
     - task: PublishBuildArtifacts@1
@@ -146,3 +146,4 @@ jobs:
           assets: |
             $(System.ArtifactsDirectory)\trhLin\*
             $(System.ArtifactsDirectory)\trhWin\*.exe
+            $(System.ArtifactsDirectory)\trhWin\*.msi
