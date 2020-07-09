@@ -8,8 +8,9 @@ AppMoniker: trh
 Tags: .net, typerefhash, trh, imphash
 Description: CLI tool to compute the TypeRefHash for .NET binaries.
 Homepage: https://github.com/GDATASoftwareAG/TypeRefHasher
+Commands: "trh"
 Installers:
   - Arch: x64
-    Url: https://github.com/GDATASoftwareAG/TypeRefHasher/releases/download/v1.0.0/trh.exe
-    Sha256: C284F1282334F4E72436492CF7A3C6D596A1D873BB90971DC8455C7B92846BB4
-    InstallerType: exe
+    Url: https://github.com/GDATASoftwareAG/TypeRefHasher/releases/download/v1.0.0/trh.msi
+    Sha256: E308F5199F4F4972252784DD6B8A39CB542A566B1B75E040F130388E177F5E0B
+    InstallerType: msi
