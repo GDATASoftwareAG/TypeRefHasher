@@ -8,10 +8,26 @@ CLI tool to compute the [TypeRefHash (TRH)](https://www.gdatasoftware.com/blog/2
 
 ## Installation
 
-Just download the binary from the [GitHub Releases](https://github.com/GDATASoftwareAG/TypeRefHasher/releases) tab. There are two versions:
+There are multiple options to obtain the *TypeRefHasher*.
 
-1. `trh` -> Linux x64
-2. `trh.exe` -> Windows x64
+### Windows
+
+Install the tool with [winget](https://github.com/microsoft/winget-cli). The tool gets added to your `PATH` environment variable.
+
+```powershell
+winget install GDATA.TypeRefHasher
+```
+
+Another option is to just download the binary or installer from the [GitHub Releases](https://github.com/GDATASoftwareAG/TypeRefHasher/releases) tab
+
+1. `trh.msi` -> Windows x64 Installer (Allows uninstall and adds the tool to your `PATH`)
+2. `trh.exe` -> Windows x64 (Standalone binary)
+
+### Linux
+
+Download the binary or installer from the [GitHub Releases](https://github.com/GDATASoftwareAG/TypeRefHasher/releases) tab.
+
+1. `trh` -> Linux x64 (Standalone binary)
 
 ## Usage
 
