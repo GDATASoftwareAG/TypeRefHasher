@@ -31,11 +31,6 @@ Linux:
 
 In both cases the output is the TRH (example: 1defec485ab3060a9201f35d69cfcdec4b70b84a2b71c83b53795ca30d1ae8be) for the given file or an error message with a description why the hash could not be computed.
 
-## Release
+## Build & Deploy
 
-To release a new version, push a tagged commit like shown below.
-
-```powershell
-git tag -a v1.0.0 -m "Release version 1.0.0"
-git push origin v1.0.0
-```
+Find more information [here](BUILD.md)
