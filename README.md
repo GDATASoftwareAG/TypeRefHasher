@@ -8,10 +8,26 @@ CLI tool to compute the [TypeRefHash (TRH)](https://www.gdatasoftware.com/blog/2
 
 ## Installation
 
-Just download the binary from the [GitHub Releases](https://github.com/GDATASoftwareAG/TypeRefHasher/releases) tab. There are two versions:
+There are multiple options to obtain the *TypeRefHasher*.
 
-1. `trh` -> Linux x64
-2. `trh.exe` -> Windows x64
+### Windows
+
+Install the tool with [winget](https://github.com/microsoft/winget-cli). The tool gets added to your `PATH` environment variable.
+
+```powershell
+winget install GDATA.TypeRefHasher
+```
+
+Another option is to just download the binary or installer from the [GitHub Releases](https://github.com/GDATASoftwareAG/TypeRefHasher/releases) tab
+
+1. `trh.msi` -> Windows x64 Installer (Allows uninstall and adds the tool to your `PATH`)
+2. `trh.exe` -> Windows x64 (Standalone binary)
+
+### Linux
+
+Download the binary or installer from the [GitHub Releases](https://github.com/GDATASoftwareAG/TypeRefHasher/releases) tab.
+
+1. `trh` -> Linux x64 (Standalone binary)
 
 ## Usage
 
@@ -31,11 +47,6 @@ Linux:
 
 In both cases the output is the TRH (example: 1defec485ab3060a9201f35d69cfcdec4b70b84a2b71c83b53795ca30d1ae8be) for the given file or an error message with a description why the hash could not be computed.
 
-## Release
+## Build & Deploy
 
-To release a new version, push a tagged commit like shown below.
-
-```powershell
-git tag -a v1.0.0 -m "Release version 1.0.0"
-git push origin v1.0.0
-```
+Find more information [here](BUILD.md)
