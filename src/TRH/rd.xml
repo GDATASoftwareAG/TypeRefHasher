@@ -1,30 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
   <Application>
-    <!-- Alternative to single requirements, include whole PeNet -> larger binary-->
-    <!--<Assembly Name="PeNet" Dynamic="Required All"></Assembly>-->
-    <Assembly Name="PeNet">
-      <Type Name="PeNet.Header.Net.MetaDataTables.Assembly" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.AssemblyRef" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.Constant" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.CustomAttribute" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.Field" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.GenericParam" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.GenericParamConstraint" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.InterfaceImpl" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.MemberRef" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.MethodDef" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.MethodSemantics" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.Module" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.ModuleRef" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.NestedClass" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.Param" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.Property" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.PropertyMap" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.StandAloneSig" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.TypeDef" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.TypeRef" Dynamic="Required All" />
-      <Type Name="PeNet.Header.Net.MetaDataTables.TypeSpec" Dynamic="Required All" />
-    </Assembly>
+    <Assembly Name="PeNet" Dynamic="Required All"></Assembly>
   </Application>
 </Directives>
