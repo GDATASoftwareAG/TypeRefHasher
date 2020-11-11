@@ -20,9 +20,9 @@ jobs:
       displayName: Install requirements
       
     - task: UseDotNet@2
-      displayName: 'Use .NET 3.x'
+      displayName: 'Use .NET 5.x'
       inputs:
-        version: '3.x'
+        version: '5.x'
         packageType: sdk
     
     - powershell: dotnet publish ./src/TRH/TRH.csproj -c $(buildConfiguration) -r linux-x64 -o $(artifactsFolder)
@@ -62,9 +62,9 @@ jobs:
 
     steps:
     - task: UseDotNet@2
-      displayName: 'Use .NET 3.x'
+      displayName: 'Use .NET 5.x'
       inputs:
-        version: '3.x'
+        version: '5.x'
         packageType: sdk
 
     - powershell: $version = '0.0.0'; echo "##vso[task.setvariable variable=version]$version"
