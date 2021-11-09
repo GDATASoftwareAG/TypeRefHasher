@@ -20,12 +20,12 @@ jobs:
       displayName: Install requirements
       
     - task: UseDotNet@2
-      displayName: 'Use .NET 5.x'
+      displayName: 'Use .NET 6.x'
       inputs:
-        version: '5.x'
+        version: '6.x'
         packageType: sdk
     
-    - powershell: dotnet publish ./src/TRH/TRH.csproj -c $(buildConfiguration) -r linux-x64 -o $(artifactsFolder)
+    - powershell: dotnet publish ./src/TRH/TRH.csproj -c $(buildConfiguration) -r linux-x64 -o $(artifactsFolder) --self-contained
       displayName: 'Build'
 
     - powershell: mv TRH trh
@@ -62,9 +62,9 @@ jobs:
 
     steps:
     - task: UseDotNet@2
-      displayName: 'Use .NET 5.x'
+      displayName: 'Use .NET 6.x'
       inputs:
-        version: '5.x'
+        version: '6.x'
         packageType: sdk
 
     - powershell: $version = '0.0.0'; echo "##vso[task.setvariable variable=version]$version"
@@ -74,7 +74,7 @@ jobs:
       displayName: Get version from tag
       condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
     
-    - powershell: dotnet publish ./src/TRH/TRH.csproj -c $(buildConfiguration) -r win-x64 -o $(artifactsFolder)
+    - powershell: dotnet publish ./src/TRH/TRH.csproj -c $(buildConfiguration) -r win-x64 -o $(artifactsFolder) --self-contained
       displayName: 'Build'
 
     - powershell: mv TRH.exe trh.exe
