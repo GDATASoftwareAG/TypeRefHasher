@@ -16,11 +16,10 @@ git push origin v1.0.0
 To release to *winget-pkgs* you need to release to *Github* first. If you have already done that and a new `trh.msi` is available on the [Github Release](https://github.com/GDATASoftwareAG/TypeRefHasher/releases) page, you need to create a PR to *winget*.
 
 1. Clone the [G DATA fork](https://github.com/GDATASoftwareAG/winget-pkgs) of the *winget* repo.
-2. Add a new `manifests\GDATA\TypeRefHasher\x.x.x.yaml` file for the new version you want to release. Just copy an older version for that. You can find an example [here](manifests\GDATA\TypeRefHasher\1.0.0.yaml). 
-   1. Name the `x.x.x.yaml` file after the version to release, e.g. `1.0.0.yaml`.
-   2. Update the `Version` tag to the new version.
-   3. Update the `Installers\Url` tag to point to the new `trh.msi` on [Github Release](https://github.com/GDATASoftwareAG/TypeRefHasher/releases).
-   4. Update the `Sha256` of the `trh.msi`.
+2. Add a new `manifests\g\GDATA\TypeRefHasher\VERSION\GDATA.TypeRefHasher.yaml` file for the new version you want to release. Just copy an older version for that. You can find an example [here](manifests\g\GDATA\TypeRefHasher\1.0.3\GDATA.TypeRefHasher.yaml). 
+   1. Update the `PackageVersion` tag to the new version.
+   2. Update the `InstallerUrl` tag to point to the new `trh.msi` on [Github Release](https://github.com/GDATASoftwareAG/TypeRefHasher/releases).
+   3. Update the `InstallerSha256` of the `trh.msi`.
       1. Bash: `curl -O -L https://github.com/GDATASoftwareAG/TypeRefHasher/releases/download/VERSION/trh.msi`
       2. Bash: `sha256sum trh.msi | tr '[:lower:]' '[:upper:]'`
 
