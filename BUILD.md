@@ -21,6 +21,8 @@ To release to *winget-pkgs* you need to release to *Github* first. If you have a
    2. Update the `Version` tag to the new version.
    3. Update the `Installers\Url` tag to point to the new `trh.msi` on [Github Release](https://github.com/GDATASoftwareAG/TypeRefHasher/releases).
    4. Update the `Sha256` of the `trh.msi`.
+      1. Bash: `curl -O -L https://github.com/GDATASoftwareAG/TypeRefHasher/releases/download/VERSION/trh.msi`
+      2. Bash: `sha256sum trh.msi | tr '[:lower:]' '[:upper:]'`
 
 If you want to verify your changes you can test the manifest with the following commands:
 
