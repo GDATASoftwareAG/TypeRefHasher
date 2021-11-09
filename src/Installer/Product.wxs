@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="TypeRefHasher" Language="1033" Version="1.0.0" Manufacturer="G DATA CyberDefense AG" UpgradeCode="1937b324-84a7-42a1-9eaa-67014f4d91d4">
+  <Product Id="*" Name="TypeRefHasher" Language="1033" Version="0.0.0" Manufacturer="G DATA CyberDefense AG" UpgradeCode="1937b324-84a7-42a1-9eaa-67014f4d91d4">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of TypeRefHasher is already installed." />
